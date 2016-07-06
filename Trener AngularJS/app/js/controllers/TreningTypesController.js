@@ -12,26 +12,26 @@
 
         this.GetClassforTreningForButton = function (treningType) {
             switch (treningType) {
-                case 'wspinaczka':
+                case 'Wspinaczka':
                     return 'btn btn-info';
 
-                case 'bieganie':
+                case 'Bieganie':
                     return 'btn btn-danger';
 
-                case 'siłownia':
+                case 'Silownia':
                     return 'btn btn-warning';
             }
         };
 
         this.GetClassforTreningForLabel = function (treningType) {
             switch (treningType) {
-                case 'wspinaczka':
+                case 'Wspinaczka':
                     return 'label label-info';
 
-                case 'bieganie':
+                case 'Bieganie':
                     return 'label label-danger';
 
-                case 'siłownia':
+                case 'Silownia':
                     return 'label label-warning';
             }
         };
@@ -40,7 +40,7 @@
         var zm = this;
         zm.TreningTypes2 = {};
         this.TreningTypes = dataService.getTreningTypesData().then(function (response) {
-            zm.TreningTypes2 = response.data.list;
+            zm.TreningTypes2 = response.data;
 
         },function(e){console.log(e)});
 

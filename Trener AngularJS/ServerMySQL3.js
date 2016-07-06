@@ -22,6 +22,8 @@ http.createServer(function(req, res) {
             'Content-Type' : 'x-application/json'
         });
         console.log('json:', result);
+        res.writeHead(200, {'Access-Control-Allow-Origin': '*'});
+
         res.end(result);
     };
 
@@ -52,7 +54,7 @@ function getSQL(callback,addParam) {
     var connection = mysql.createConnection({
         host : 'localhost',
         user : 'root',
-        password : 'Praca2016?',
+        password : 'password',
         database : 'TrenerDB',
        // socketPath : '/var/run/mysqld/mysqld.sock', // socket for communication from debian <-> client, seems not to be set correcly by default?
     });
@@ -60,6 +62,8 @@ function getSQL(callback,addParam) {
     connection.connect();
     var json = '';
     var query;
+
+    console.log(addParam);
     if (addParam==='Category')
     {
           query = 'SELECT * FROM Category';
@@ -74,8 +78,11 @@ function getSQL(callback,addParam) {
     }
 
     connection.query(query, function(err, results, fields) {
-        if (err)
+
+        if (err) {
+            console.log(err);
             return callback(err, null);
+        }
 
         console.log('The query-result is: ', results[0]);
 
@@ -90,3 +97,23 @@ function getSQL(callback,addParam) {
         callback(null, json);
     });
 };
+
+
+
+var express = require('express');
+var app = express();
+
+app.use(express.static('app'));
+
+app.get('/', function (req, res) {
+    res.send('Hello World');
+})
+
+var server = app.listen(8081, function () {
+
+    var host = server.address().address
+    var port = server.address().port
+
+    console.log("Example app listening at http://%s:%s", host, port)
+
+})

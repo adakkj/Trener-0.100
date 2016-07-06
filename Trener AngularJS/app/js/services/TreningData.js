@@ -8,7 +8,7 @@
         this.getTreningTypesData = function() {
             return $http({
                 method: 'GET',
-                url: 'http://localhost:57983/Pusty/GetTreningTypes',
+                url: 'http://localhost:3000/category',
             }).success(function(data){
                 return data;
             }).error(function(){

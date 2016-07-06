@@ -5,10 +5,10 @@
     <p ng-repeat="item in TreningTypesCtrl.TreningTypes2 track by $index" style="padding: 20px">
 
 
-        <button type="button" ng-class="TreningTypesCtrl.GetClassforTreningForButton(item.Type)" >{{item.Type}}</button>
+        <button type="button" ng-class="TreningTypesCtrl.GetClassforTreningForButton(item.Name)" >{{item.Name}}</button>
         <br> <br>
-    <span ng-repeat="item2 in item.Subtype  "
-          ng-class="TreningTypesCtrl.GetClassforTreningForLabel(item.Type)" style="margin-left: 5px">{{item2}}</span>
+    <!--<span ng-repeat="item2 in item.Subtype  "-->
+          <!--ng-class="TreningTypesCtrl.GetClassforTreningForLabel(item.Name)" style="margin-left: 5px">{{item2}}</span>-->
 
     </p>
 
