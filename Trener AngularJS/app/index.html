@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Strona główna</title>
+    <!--<base href="/Projekt3m/"/>-->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/app.css">
+
+
+</head>
+<body ng-app="treningApp" ng-controller="MainController as MainCtrl">
+
+
+<div class="container">
+
+    <div class="jumbotron">
+
+        <div id="menu" style="margin-top: 50px">
+            <my-Nav-Bar></my-Nav-Bar>
+        </div>
+
+        <div class="alert alert-danger" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span>
+            Enter a valid email address
+        </div>
+        {{MainCtrl.message}}
+
+
+        </br>
+
+        <ng-view></ng-view>
+        <form>
+            <input id="eventDate" type="text" date-keys required ng-pattern="/\d\d/\d\d/\d\d\d\d/" ng-model="event.date" placeholder="format (mm/dd/yyyy)..." />
+
+
+            <input type="text"   ng-model="MainCtrl.message" >
+
+            <better-input laladata="{{MainCtrl.message}}"></better-input>
+        </form>
+
+
+
+    </div>
+
+</div>
+
+
+<script src="lib/angular/angular.js"></script>
+<script src="lib/angular/angular-resource.js"></script>
+<script src="lib/angular/angular-route.min.js"></script>
+
+<script src="js/app.js"></script>
+
+<script src="js/directives.js"></script>
+<script src="js/controllers/MainController.js"></script>
+<script src="js/controllers/MainListController.js"></script>
+<script src="js/controllers/TreningTypesController.js"></script>
+<script src="js/controllers/WSTestController.js"></script>
+
+
+<script src="js/services/TreningData.js"></script>
+<script src="lib/bootstrap.min.js"></script>
+
+</body>
+</html>

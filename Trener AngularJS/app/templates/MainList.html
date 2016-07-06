@@ -1,0 +1,57 @@
+<div>
+    {{MainListCtrl.message}}
+    <h3>Trenings' entries</h3>
+    Order By:
+    <select name="" id="" ng-model="MainListCtrl.sortorder" class="input-small">
+        <option value="Power" selected>Power</option>
+        <option value="-Power" selected>-Power</option>
+        <option value="Date">Date</option>
+        <option value="-Date">-Date</option>
+        <option value="Duration" selected>Duration</option>
+        <option value="-Duration" selected>-Duration</option>
+    </select>
+    Show:
+    <select name="" id="" ng-model="query.level" class="input-medium">
+        <option value="" selected>All</option>
+        <option value="introductory">Introductory</option>
+        <option value="intermediate">Intermediate</option>
+        <option value="advanced">Advanced</option>
+    </select>
+    <ul class="thumbnails">
+        <li ng-repeat="entry in MainListCtrl.TreningList.lista | orderBy:MainListCtrl.sortorder">
+
+            <div class="row session">
+                <voting-thing uptreningpower="MainListCtrl.upTreningPower(entry)" downtreningpower="MainListCtrl.downTreningPower(entry)" count="entry.Power" ></voting-thing>
+
+                <div class="well span9">
+                    <h3 class="well-title"  >
+                        <div  >{{entry.Date | date:'yyyy-MM-dd'}}
+                            <span class="label label-success" style="vertical-align: middle" >{{entry.WakeUp}}</span> -
+                            <span class="label label-success" style="vertical-align: middle">{{entry.SleepAt}}</span>
+                        </div>
+
+                    </h3>
+                    <!--<h6 style="margin-top:-10px">{{entry.Trenings |json}}</h6>-->
+
+                    <div class="btn-group" role="group" aria-label="...">
+                        <button ng-repeat="trening in entry.Trenings" type="button"
+                                ng-class="MainListCtrl.GetClassforTrening(trening.Type)">{{trening.Type }} -
+                            {{trening.Name }}
+                        </button>
+                    </div>
+                    </br>
+                    <span>Duration: {{entry.Duration }}</span><br/>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-info" role="progressbar"  aria-valuenow="(entry.Power/5)*100" aria-valuemin="0" aria-valuemax="100" style="text-align: center;width: {{(entry.Power/5)*100}}%;background-color: green">
+                            <span class="sr-only" >Power: {{entry.Power}}/5</span>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </li>
+    </ul>
+
+
+</div>
