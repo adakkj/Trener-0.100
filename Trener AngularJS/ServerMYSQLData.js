@@ -58,3 +58,34 @@ connection.connect();
 //     if (err) throw err;
 //     connection.end();
 // });
+
+
+
+// var sql = "INSERT INTO DayEntry (DateD,WakeUp,SleepAt) VALUES ?";
+// var values = [
+//     ['2016-07-13', '7:00', '23:10'],
+//     ['2016-07-14', '6:10', '22:10'],
+//     ['2016-07-15', '7:20', '23:50'],
+//     ['2016-07-16', '7:10', '23:25']
+// ];
+//
+//
+// connection.query(sql, [values], function (err) {
+//     if (err) throw err;
+//     connection.end();
+// });
+
+
+// var sql = "INSERT INTO TreningEntry (DayEntryID,Description,CategoryID,SubCategoryID,Duration,Power) VALUES ?";
+// var values = [
+//     [17, 'Trening na Crux', 10,7,2,4  ],
+//     [17, 'Trening na silowni domowej', 11,10,1,3  ],
+//     [18, 'Bieganie balaton', 9,1,1,4  ],
+//     [19, 'Trening w domu', 11,10,2,4  ]
+// ];
+//
+//
+// connection.query(sql, [values], function (err) {
+//     if (err) throw err;
+//     connection.end();
+// });
