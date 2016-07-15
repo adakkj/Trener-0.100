@@ -2,13 +2,11 @@
     {{TreningTypesCtrl.message}}
 
 
-    <p ng-repeat="item in TreningTypesCtrl.TreningTypes2 track by $index" style="padding: 20px">
-
-
-        <button type="button" ng-class="TreningTypesCtrl.GetClassforTreningForButton(item.Name)" >{{item.Name}}</button>
+    <p ng-repeat="item in TreningTypesCtrl.TreningTypesData | unique:'CategoryName' track by $index" style="padding: 20px">
+        <button type="button" ng-class="TreningTypesCtrl.GetClassforTreningForButton(item.CategoryName)" >{{item.CategoryName}}</button>
         <br> <br>
-    <!--<span ng-repeat="item2 in item.Subtype  "-->
-          <!--ng-class="TreningTypesCtrl.GetClassforTreningForLabel(item.Name)" style="margin-left: 5px">{{item2}}</span>-->
+         <span ng-repeat="item2 in TreningTypesCtrl.TreningTypesData | filter : item.CategoryName as CategoryName"
+          ng-class="TreningTypesCtrl.GetClassforTreningForLabel(item.CategoryName)" style="margin-left: 5px">{{item2.Name}}</span>
 
     </p>
 

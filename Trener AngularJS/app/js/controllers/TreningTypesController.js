@@ -11,40 +11,40 @@
         this.sortorder = 'Date';
 
         this.GetClassforTreningForButton = function (treningType) {
-            switch (treningType) {
-                case 'Wspinaczka':
+            switch (treningType.toLowerCase()) {
+                case 'wspinaczka':
                     return 'btn btn-info';
 
-                case 'Bieganie':
+                case 'bieganie':
                     return 'btn btn-danger';
 
-                case 'Silownia':
+                case 'silownia':
                     return 'btn btn-warning';
             }
         };
 
         this.GetClassforTreningForLabel = function (treningType) {
-            switch (treningType) {
-                case 'Wspinaczka':
+            switch (treningType.toLowerCase()) {
+                case 'wspinaczka':
                     return 'label label-info';
 
-                case 'Bieganie':
+                case 'bieganie':
                     return 'label label-danger';
 
-                case 'Silownia':
+                case 'silownia':
                     return 'label label-warning';
             }
         };
 
 
         var zm = this;
-        zm.TreningTypes2 = {};
-        this.TreningTypes = dataService.getTreningTypesData().then(function (response) {
-            zm.TreningTypes2 = response.data;
+        zm.TreningTypesData = {};
+
+        dataService.getWSData('CatAndSubCatTreningTypesView').then(function (response) {
+            zm.TreningTypesData = response.data;
 
         },function(e){console.log(e)});
 
-
     })
 
-}())
+}());

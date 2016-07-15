@@ -5,18 +5,21 @@
     var app = angular.module('treningApp');
 
     app.service('dataService', function($http) {
-        this.getTreningTypesData = function() {
+        this.getWSData = function(WSparam) {
             return $http({
                 method: 'GET',
-                url: 'http://localhost:3000/category',
+                url: 'http://localhost:3000/'+WSparam,
             }).success(function(data){
                 return data;
             }).error(function(){
                 alert("error");
                 return null ;
             });
-        }
+        };
+
     });
+
+
     
     app.factory('TreningData', function (dataService) {
 

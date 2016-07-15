@@ -17,12 +17,17 @@
                     controllerAs:'MainListCtrl'
 
                 });
+            $routeProvider.when('/Index2',
+                {
+                    templateUrl: 'templates/DayEntryMainView.html',
+                    controller: 'DayEntryMainViewController',
+                    controllerAs:'DayEntryMainViewCtrl'
+
+                });
             $routeProvider.when('/WS',
                 {
                     templateUrl: 'templates/TestWS.html',
                     controller: 'WSTestController',
-
-
                 });
             $routeProvider.otherwise(
                 {

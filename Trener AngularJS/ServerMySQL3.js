@@ -12,11 +12,7 @@ var http = require('http');
 http.createServer(function(req, res) {
 
 
-    var url = req.url;
-    console.log(url);
-
-
-    console.log('Receving request...');
+    console.log('---------------Start Receving request-------------');
     var callback = function(err, result) {
         res.writeHead(200, {
             'Content-Type' : 'x-application/json'
@@ -29,22 +25,45 @@ http.createServer(function(req, res) {
 
 
     console.log('URLss ...');
-    if(url.toLowerCase() === '/category')
+    var url = req.url;
+    console.log(url);
+
+    if(url.toLowerCase() === '/category'.toLowerCase())
     {
-        console.log('AAA Category...');
-        getSQL(callback,'Category');
+        console.log('Category sublink selected...');
+        getSQL(callback,'category');
     }
-    else if(url.toLowerCase() === '/subcategory')
+    else if(url.toLowerCase() === '/subcategory'.toLowerCase())
     {
-        console.log('AAA   Subcategory ...');
-        getSQL(callback,'Subcategory');
+        console.log('Subcategory sublink selected...');
+        getSQL(callback,'subcategory');
 }
+    else if(url.toLowerCase() === '/treningentry'.toLowerCase())
+    {
+        console.log('TreningRntry sublink selected...');
+        getSQL(callback,'treningentry');
+    }
+    else if(url.toLowerCase() === '/CatAndSubCatTreningTypesView'.toLowerCase())
+    {
+        console.log('CatAndSubCatTreningTypesView sublink selected...');
+        getSQL(callback,'CatAndSubCatTreningTypesView');
+    }
+    else if(url.toLowerCase() === '/DayEntryMainView'.toLowerCase())
+    {
+        console.log('DayEntryMainView sublink selected...');
+        getSQL(callback,'DayEntryMainView');
+    }
+    else if(url.toLowerCase() === '/TreningEntryMainView'.toLowerCase())
+    {
+        console.log('TreningEntryMainView sublink selected...');
+        getSQL(callback,'TreningEntryMainView');
+    }
     else
     {
-        getSQL(callback,'no url');
+        getSQL(callback,'no url mathed');
     }
 
-
+    console.log('---------------End request-------------');
 }).listen(3000);
 
 // Access MySQL via node-mysql
@@ -54,7 +73,7 @@ function getSQL(callback,addParam) {
     var connection = mysql.createConnection({
         host : 'localhost',
         user : 'root',
-        password : 'password',
+        password : 'Praca2016?',
         database : 'TrenerDB',
        // socketPath : '/var/run/mysqld/mysqld.sock', // socket for communication from debian <-> client, seems not to be set correcly by default?
     });
@@ -63,19 +82,40 @@ function getSQL(callback,addParam) {
     var json = '';
     var query;
 
-    console.log(addParam);
-    if (addParam==='Category')
+    console.log('Funkcja getSQL addParam: '+addParam);
+    if (addParam==='category')
     {
           query = 'SELECT * FROM Category';
     }
-    else if(addParam === 'Subcategory')
+    else if(addParam === 'subcategory')
     {
           query = 'SELECT * FROM Subcategory';
+    }
+    else if(addParam === 'treningentry')
+    {
+        query = 'SELECT * FROM TreningEntry';
+    }
+    // ----------------z SENSEM--------------------------------
+    else if(addParam === 'CatAndSubCatTreningTypesView')
+    {
+        query = 'select c.name as CategoryName, s.* from category c inner join subcategory s on s.CategoryId=c.id';
+    }
+    else if(addParam === 'DayEntryMainView')
+    {
+        query = 'SELECT * FROM DayEntry'
+    }
+    else if(addParam === 'TreningEntryMainView')
+    {
+        query = 'SELECT '+
+        'd.ID as D_ID, '+
+            't.ID as T_ID,t.CategoryID, t.SubcategoryID, t.Duration, t.Power '+
+        'FROM dayentry d INNER JOIN treningEntry t ON t.DayEntryID=d.id ';
     }
     else
     {
         query='';
     }
+    console.log('Funkcja getSQL used query: '+query);
 
     connection.query(query, function(err, results, fields) {
 
@@ -105,9 +145,9 @@ var app = express();
 
 app.use(express.static('app'));
 
-app.get('/', function (req, res) {
-    res.send('Hello World');
-})
+// app.get('/', function (req, res) {
+//     res.send('Hello World');
+// })
 
 var server = app.listen(8081, function () {
 
