@@ -19,7 +19,7 @@
                 });
             $routeProvider.when('/Index2',
                 {
-                    templateUrl: 'templates/DayEntryMainView.html',
+                    templateUrl: 'Sites/DayEntry/DayEntryMainView.html',
                     controller: 'DayEntryMainViewController',
                     controllerAs:'DayEntryMainViewCtrl'
 
