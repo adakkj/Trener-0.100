@@ -59,7 +59,7 @@ DayEntryRouteConfig.prototype.addRoutes = function () {
                 });
             }
         }
-    )
+    );
 
 
     self.routeTable.push({

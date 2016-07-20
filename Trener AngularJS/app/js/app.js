@@ -31,6 +31,13 @@
                     controllerAs:'NewDayEntryCtrl'
 
                 });
+            $routeProvider.when('/TreningEntryDetail/:TreningEntryID',
+                {
+                    templateUrl: 'Sites/TreningEntry/Details.html',
+                    controller: 'TreningEntryDetailsController',
+                    controllerAs:'TreningEntryDetailsCtrl'
+
+                });
             $routeProvider.otherwise(
                 {
                     redirectTo:'/Index'

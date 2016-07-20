@@ -1,0 +1,22 @@
+{{TreningEntryDetailsCtrl.message}}
+<div class="well span9">
+
+
+   <span ng-class="TreningEntryDetailsCtrl.GetClassforTreningForLabel(TreningEntryDetailsCtrl.GetCategoryName(TreningEntryDetailsCtrl.TreningEntryData.CategoryID))">
+       {{TreningEntryDetailsCtrl.GetCategoryName(TreningEntryDetailsCtrl.TreningEntryData.CategoryID)}} - {{TreningEntryDetailsCtrl.GetSubCategoryName(TreningEntryDetailsCtrl.TreningEntryData.SubcategoryID)}}
+   </span>
+    <br/>
+    {{TreningEntryDetailsCtrl.TreningEntryData.Description}}
+    <br/>
+    <span>Duration: {{TreningEntryDetailsCtrl.TreningEntryData.Duration }}</span><br/>
+    <div class="progress">
+        <div class="progress-bar progress-bar-info" role="progressbar"
+             aria-valuenow="(TreningEntryDetailsCtrl.TreningEntryData.Power/5)*100" aria-valuemin="0" aria-valuemax="100"
+             style="text-align: center;width: {{(TreningEntryDetailsCtrl.TreningEntryData.Power/5)*100}}%;background-color: green">
+            <span class="sr-only">Power: {{TreningEntryDetailsCtrl.TreningEntryData.Power}}/5</span>
+        </div>
+    </div>
+
+    <voting-thing uptreningpower="TreningEntryDetailsCtrl.upTreningPower(TreningEntryDetailsCtrl.TreningEntryData)" downtreningpower="TreningEntryDetailsCtrl.downTreningPower(TreningEntryDetailsCtrl.TreningEntryData)" count="TreningEntryDetailsCtrl.TreningEntryData.Power" ></voting-thing>
+
+</div>

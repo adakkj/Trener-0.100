@@ -44,8 +44,6 @@ TreningEntryRouteConfig.prototype.processRoutes = function () {
 TreningEntryRouteConfig.prototype.addRoutes = function () {
     var self = this;
 
-
-
     self.routeTable.push({
             requestType: 'get',
             requestUrl: '/TreningEntryMainView',
@@ -61,7 +59,25 @@ TreningEntryRouteConfig.prototype.addRoutes = function () {
                 });
             }
         }
+    );
+
+    self.routeTable.push({
+            requestType: 'get',
+            requestUrl: '/GetTreningEntryByID/:TreningEntryID',
+            callbackFunction: function (request, response) {
+
+                console.log('request');
+                console.log(request.url);
+
+                var treningEntryDA = require('./../../../Server/DALayer/TreningEntryDA.js');
+                treningEntryDA.TreningEntryDA.getTreningEntryByID(request.params.TreningEntryID, function (TreningEntries) {
+                    console.log(TreningEntries);
+                    response.json(TreningEntries);
+                });
+            }
+        }
     )
 };
+
 
 module.exports = TreningEntryRouteConfig;
