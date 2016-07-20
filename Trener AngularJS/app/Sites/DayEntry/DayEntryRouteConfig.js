@@ -20,9 +20,7 @@ DayEntryRouteConfig.prototype.processRoutes = function () {
     var self = this;
     self.routeTable.forEach(function (route) {
         if (route.requestType == 'get') {
-            // rób standardowy express.strict
-            //    self.app.get(route.requestUrl, route.callbackFunction());
-
+            self.app.get(route.requestUrl, route.callbackFunction);
         }
         else if (route.requestType == 'post') {
 
@@ -48,7 +46,7 @@ DayEntryRouteConfig.prototype.addRoutes = function () {
 
     self.routeTable.push({
             requestType: 'post',
-            requestUrl: '/abc',
+            requestUrl: '/NewDayEntry',
             callbackFunction: function (request, response) {
 
                 console.log('request');
@@ -58,6 +56,24 @@ DayEntryRouteConfig.prototype.addRoutes = function () {
                 dayEntryDA.DayEntryDA.createDayEntry(request.body, function (status) {
                     response.json(status);
                     console.log(status);
+                });
+            }
+        }
+    )
+
+
+    self.routeTable.push({
+            requestType: 'get',
+            requestUrl: '/DayEntryMainView',
+            callbackFunction: function (request, response) {
+
+                console.log('request');
+                console.log(request.url);
+
+                var dayEntryDA = require('./../../../Server/DALayer/DayEntryDA.js');
+                dayEntryDA.DayEntryDA.getDayEntries(function (DayEntries) {
+                    console.log(DayEntries);
+                    response.json(DayEntries);
                 });
             }
         }

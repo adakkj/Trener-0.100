@@ -10,8 +10,6 @@
         this.message = "this message from MainController";
         $scope.message = "scope message";
 
-        
- 
     })
 
 }())

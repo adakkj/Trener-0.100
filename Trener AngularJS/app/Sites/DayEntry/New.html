@@ -1,0 +1,12 @@
+{{NewDayEntryCtrl.message}}
+<div class="well span9">
+    <!--<span class="label label-success" >{{NewDayEntryCtrl.SaveEffectInfo}}</span>-->
+    <span ng-class="NewDayEntryCtrl.SaveEffectCssClass" >{{NewDayEntryCtrl.SaveEffectInfo}}</span>
+    <form ng-submit="NewDayEntryCtrl.SaveNewDayEntry()">
+        Dzien: <input type="date" required ng-model="NewDayEntryCtrl.NewDayEntry.DateD"/><br/>
+        Wstalem o: <input type="text" ng-model="NewDayEntryCtrl.NewDayEntry.WakeUp"/><br/>
+        Poszedlem spac o: <input type="text" ng-model="NewDayEntryCtrl.NewDayEntry.SleepAt"/><br/>
+        <button class="ng-binding btn btn-info" type="submit">Zapisz</button>
+    </form>
+
+</div>

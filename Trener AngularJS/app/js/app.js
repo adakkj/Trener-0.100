@@ -24,10 +24,12 @@
                     controllerAs:'DayEntryMainViewCtrl'
 
                 });
-            $routeProvider.when('/WS',
+            $routeProvider.when('/NewDayEntry',
                 {
-                    templateUrl: 'templates/TestWS.html',
-                    controller: 'WSTestController',
+                    templateUrl: 'Sites/DayEntry/New.html',
+                    controller: 'NewDayEntryController',
+                    controllerAs:'NewDayEntryCtrl'
+
                 });
             $routeProvider.otherwise(
                 {

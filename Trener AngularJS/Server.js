@@ -1,35 +1,36 @@
 var express = require('express');
 var http = require('http');
-var path = require('path');
+//var path = require('path');
 var routes = require('routes');
 
+var globalSetup = require('./GlobalSetup.js');
 
 var app = express();
-app.set('port',3000);
+app.set('port',globalSetup.MyPort);
 
 
-// jesli nie uzyjemy tej linn to nie podczepimy katalogu aplikacji
+// jesli nie uzyjemy tej lini to nie podczepimy katalogu aplikacji
 app.use(express.static('app'));
 
 
 //app.get('/', function (req, res) {
 //    res.send('Hello World');
 //});
-//app.use(express.bodyParser());
 
 var DayEntryRouteConfig=require('./App/Sites/DayEntry/DayEntryRouteConfig');
-
 new DayEntryRouteConfig(app);
 
+var CategoryRouteConfig=require('./App/Sites/Category/CategoryRouteConfig');
+new CategoryRouteConfig(app);
+
+var SubcategoryRouteConfig=require('./App/Sites/Subcategory/SubcategoryRouteConfig');
+new SubcategoryRouteConfig(app);
+
+var TreningEntryRouteConfig=require('./App/Sites/TreningEntry/TreningEntryRouteConfig');
+new TreningEntryRouteConfig(app);
+
+
 http.createServer(app).listen(app.get('port'),function () {
-    console.log( 'Express server listening on port'+app.get('port'))
+    console.log( 'Express server listening on port '+app.get('port'))
 })
 
-// var server = app.listen(8081, function () {
-//
-//     var host = server.address().address
-//     var port = server.address().port
-//
-//     console.log("Example app listening at http://%s:%s", host, port)
-//
-// })

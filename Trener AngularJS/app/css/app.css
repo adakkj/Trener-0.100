@@ -32,3 +32,6 @@ select, textarea {
 .blue {
   color:blue;
 }
+.label-danger {
+    background-color: #d9534f;
+}
