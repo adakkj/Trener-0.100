@@ -1,12 +1,28 @@
 {{NewDayEntryCtrl.message}}
-<div class="well span9">
+<div class="well span12">
     <!--<span class="label label-success" >{{NewDayEntryCtrl.SaveEffectInfo}}</span>-->
-    <span ng-class="NewDayEntryCtrl.SaveEffectCssClass" >{{NewDayEntryCtrl.SaveEffectInfo}}</span>
-    <form ng-submit="NewDayEntryCtrl.SaveNewDayEntry()">
-        Dzien: <input type="date" required ng-model="NewDayEntryCtrl.NewDayEntry.DateD"/><br/>
-        Wstalem o: <input type="text" ng-model="NewDayEntryCtrl.NewDayEntry.WakeUp"/><br/>
-        Poszedlem spac o: <input type="text" ng-model="NewDayEntryCtrl.NewDayEntry.SleepAt"/><br/>
-        <button class="ng-binding btn btn-info" type="submit">Zapisz</button>
+    <span ng-class="NewDayEntryCtrl.SaveEffectCssClass">{{NewDayEntryCtrl.SaveEffectInfo}}</span>
+    <form name="NewDayEntryForm">
+        <fieldset>
+            Dzien: <input type="date" required ng-model="NewDayEntryCtrl.NewDayEntry.DateD"/><br/>
+            Wstalem o: <input type="text" id="p1" required ng-model="NewDayEntryCtrl.NewDayEntry.WakeUp"
+                              ng-pattern="/[0-2][0-9]:[0-5][0-9]/" placeholder="Format GG:MM"/><br/>
+            Poszedlem spac o: <input type="text" id="p2" ng-model="NewDayEntryCtrl.NewDayEntry.SleepAt"
+                                     ng-pattern="/[0-2][0-9]:[0-5][0-9]/" placeholder="Format GG:MM"/><br/>
+
+
+
+
+
+            <button class="ng-binding btn btn-info" type="submit"
+                    ng-click="NewDayEntryCtrl.SaveNewDayEntry(NewDayEntryForm)">Zapisz
+            </button>
+        </fieldset>
     </form>
+
+    <trening-entry-adding-table   ></trening-entry-adding-table>
+
+    <button ng-click="NewDayEntryCtrl.AddNewElement2('aa')" type="button"> {{NewDayEntryCtrl.message}}</button>
+
 
 </div>

@@ -16,35 +16,39 @@
 
         zm.SaveEffectInfo = '';
         zm.SaveEffectCssClass = 'label label-success';
-        zm.SaveNewDayEntry = function () {
-            dataService.postWSData('NewDayEntry', zm.NewDayEntry).then(function (response) {
-                alert(response.status );
-                if (response.status == 200) {
-                    zm.SaveEffectInfo = 'Dodano nowy wpis!';
-                    zm.SaveEffectCssClass = 'label label-success';
+        zm.SaveNewDayEntry = function (NewDayEntryForm) {
+            if (NewDayEntryForm.$valid) {
+                dataService.postWSData('NewDayEntry', zm.NewDayEntry).then(function (response) {
+                    alert(response.status);
+                    if (response.status == 200) {
+                        zm.SaveEffectInfo = 'Dodano nowy wpis!';
+                        zm.SaveEffectCssClass = 'label label-success';
 
-                    $timeout(function () {
-                        zm.SaveEffectInfo = '';
-                    }, 3000);
-                }
-                else {
-                    zm.SaveEffectInfo = 'Wystapil blad';
-                    zm.SaveEffectCssClass = 'label label-danger';
-                    $timeout(function () {
-                        zm.SaveEffectInfo = '';
-                    }, 3000);
-                }
+                        $timeout(function () {
+                            zm.SaveEffectInfo = '';
+                        }, 3000);
+                    }
+                    else {
+                        zm.SaveEffectInfo = 'Wystapil blad';
+                        zm.SaveEffectCssClass = 'label label-danger';
+                        $timeout(function () {
+                            zm.SaveEffectInfo = '';
+                        }, 3000);
+                    }
 
-                zm.NewDayEntry = {DateD: new Date()};
-            })
+                    zm.NewDayEntry = {DateD: new Date()};
+                })
+            }
+            else {
+                alert('Niepoprawne dane w formlarzu');
+            }
         };
 
 
         zm.DayEntryMainViewData = {};
         zm.TreningEntryMainViewData = {};
         zm.CategoryData = {};
-        zm.SubCategoryData = {};
-
+        zm.SubcategoryData = {};
 
         // Ladowanie danych
         dataService.getWSData('Category').then(function (response) {
@@ -55,7 +59,7 @@
         });
 
         dataService.getWSData('SubCategory').then(function (response) {
-            zm.SubCategoryData = response.data;
+            zm.SubcategoryData = response.data;
 
 
         }, function (e) {
@@ -98,8 +102,35 @@
 
         //CSS
 
+
         zm.GetClassforTreningForButton = CssService.GetClassforTreningForButton;
         zm.GetClassforTreningForLabel = CssService.GetClassforTreningForLabel;
+
+
+        // dyrektywa dodawnia TreningEntry
+
+
+        zm.NewTreningEntiries = {
+            Test: 'xyz',
+            TreningEntryArray: [],
+            NewElement: {
+                DayEntryID: '',
+                Description: '',
+                Duration: '',
+                Power: '',
+                Cat:{
+                    id:'',
+                    Name:''
+                },
+                Subcat:{id:'',
+                    Name:''}
+            },
+
+            AddNewElement: function () {
+                this.TreningEntryArray.push(this.NewElement);
+                this.NewElement = {};
+            }
+        };
 
 
     })

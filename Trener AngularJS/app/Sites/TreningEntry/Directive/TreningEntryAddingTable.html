@@ -1,0 +1,63 @@
+<div>
+    <table class="table">
+        <thead>
+        <tr class="success">
+
+            <td>Kategoria</td>
+            <td>Podkategoria</td>
+            <td>Opis</td>
+            <td>Czas</td>
+            <td>Power</td>
+            <td></td>
+        <tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in NewDayEntryCtrl.NewTreningEntiries.TreningEntryArray">
+
+
+            <td>{{item.Cat.Name}}</td>
+            <td>{{item.Subcat.Name}}</td>
+            <td>{{item.Description}}</td>
+            <td>{{item.Duration}}</td>
+            <td>{{item.Power}}</td>
+            <td>
+
+            </td>
+        </tr>
+        </tbody>
+
+        <tr>
+
+            <td>
+                <select name="repeatSelect" id="repeatSelect" ng-model="NewDayEntryCtrl.NewTreningEntiries.NewElement.Cat"  >
+                    <option ng-repeat="option in NewDayEntryCtrl.CategoryData" value="{{option}} ">{{option.Name}}</option>
+                </select>
+            </td>
+            <td>
+                <select name="repeatSelect" id="repeatSelect2" ng-model="NewDayEntryCtrl.NewTreningEntiries.NewElement.Subcat">
+                    <option ng-repeat="option in NewDayEntryCtrl.SubcategoryData" value="{{option.id}}">{{option.Name}}</option>
+                </select>
+            </td>
+
+            <td><input type="text" ng-model="NewDayEntryCtrl.NewTreningEntiries.NewElement.Description"></td>
+            <td><input type="text" ng-model="NewDayEntryCtrl.NewTreningEntiries.NewElement.Duration"></td>
+            <td><input type="text" ng-model="NewDayEntryCtrl.NewTreningEntiries.NewElement.Power"></td>
+
+            <td>
+                <button type="button"  ng-click="NewDayEntryCtrl.NewTreningEntiries.AddNewElement()">
+                    Dodaj
+                </button>
+            </td>
+
+        </tr>
+
+    </table>
+
+    {{NewDayEntryCtrl.NewTreningEntiries.NewElement |json }}
+    --------------------------<br/>
+    {{NewDayEntryCtrl.NewTreningEntiries.TreningEntryArray |json }}
+
+</div>
+
+
+

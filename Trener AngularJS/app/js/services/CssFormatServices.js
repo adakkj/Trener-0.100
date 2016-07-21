@@ -9,28 +9,32 @@
     app.service('CssService', function() {
 
         this.GetClassforTreningForButton = function (treningType) {
-            switch (treningType.toLowerCase()) {
-                case 'wspinaczka':
-                    return 'btn btn-info';
+            if(treningType) {
+                switch (treningType.toLowerCase()) {
+                    case 'wspinaczka':
+                        return 'btn btn-info';
 
-                case 'bieganie':
-                    return 'btn btn-danger';
+                    case 'bieganie':
+                        return 'btn btn-danger';
 
-                case 'silownia':
-                    return 'btn btn-warning';
+                    case 'silownia':
+                        return 'btn btn-warning';
+                }
             }
         };
 
         this.GetClassforTreningForLabel = function (treningType) {
-            switch (treningType.toLowerCase()) {
-                case 'wspinaczka':
-                    return 'label label-info';
+            if(treningType) {
+                switch (treningType.toLowerCase()) {
+                    case 'wspinaczka':
+                        return 'label label-info';
 
-                case 'bieganie':
-                    return 'label label-danger';
+                    case 'bieganie':
+                        return 'label label-danger';
 
-                case 'silownia':
-                    return 'label label-warning';
+                    case 'silownia':
+                        return 'label label-warning';
+                }
             }
         };
 

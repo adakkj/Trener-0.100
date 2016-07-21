@@ -6,16 +6,16 @@
 (function () {
 
     var app = angular.module('treningApp');
-    app.controller("TreningEntryDetailsController", function (dataService, CssService,$routeParams) {
-        var treningID=$routeParams.TreningEntryID;
-        this.message = "this message from TreningEntryDetailsController: "+treningID;
+    app.controller("TreningEntryDetailsController", function (dataService, CssService, $routeParams) {
+        var treningID = $routeParams.TreningEntryID;
+        this.message = "this message from TreningEntryDetailsController: " + treningID;
 
 
         var zm = this;
 
-        zm.TreningEntryData = {} ;
-        zm.CategoryData = {};
-        zm.SubCategoryData = {};
+        zm.TreningEntryData = {};
+        zm.CategoryData = [];
+        zm.SubCategoryData = []
 
 
         // Ladowanie danych
@@ -31,7 +31,7 @@
             console.log(e)
         });
 
-        dataService.getWSData('GetTreningEntryByID/'+treningID).then(function (response) {
+        dataService.getWSData('GetTreningEntryByID/' + treningID).then(function (response) {
             zm.TreningEntryData = response.data[0]; // pierwszy element
         }, function (e) {
             console.log(e)
@@ -41,19 +41,34 @@
 
 
         zm.GetCategoryName = function (categoryID) {
+            if (categoryID) {
+                var l = zm.CategoryData.filter(function (el) {
+                    return el.id == categoryID;
+                });
 
-            var l = zm.CategoryData.filter(function (el) {
-                return el.id == categoryID;
-            });
-
-            return l[0].Name;
+                if (l.length==0)
+                {
+                    console.log('Zalogowano categoryID: '+categoryID);
+                }
+                else {
+                    return l[0].Name;
+                }
+            }
         };
         zm.GetSubCategoryName = function (SubcategoryID) {
+            if (SubcategoryID) {
+                var l = zm.SubCategoryData.filter(function (el) {
+                    return el.id == SubcategoryID;
+                });
 
-            var l = zm.SubCategoryData.filter(function (el) {
-                return el.id == SubcategoryID;
-            });
-            return l[0].Name;
+                if (l.length==0)
+                {
+                    console.log('Zalogowano SubcategoryID: '+SubcategoryID);
+                }
+                else {
+                    return l[0].Name;
+                }
+            }
         };
 
 
@@ -62,18 +77,17 @@
         zm.GetClassforTreningForLabel = CssService.GetClassforTreningForLabel;
 
 
-
-        zm.downTreningPower= function (entry){
-            if (entry.Power>0 && entry.Power<=5) {
+        zm.downTreningPower = function (entry) {
+            if (entry.Power > 0 && entry.Power <= 5) {
                 entry.Power--;
             }
         };
-        zm.upTreningPower= function (entry){
-            if (entry.Power>=0 && entry.Power<5) {
+        zm.upTreningPower = function (entry) {
+            if (entry.Power >= 0 && entry.Power < 5) {
                 entry.Power++;
             }
         };
-        
+
 
     })
 

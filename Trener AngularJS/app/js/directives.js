@@ -27,6 +27,24 @@
         }
     );
 
+
+
+    app.directive('treningEntryAddingTable', function () {
+        return {
+            restrict: 'E',
+            replace: true,
+            templateUrl: '/Sites/TreningEntry/Directive/TreningEntryAddingTable.html',
+        }
+            ;
+    });
+
+
+
+
+
+
+
+
     app.directive("betterInput", function () {
             return {
                 restrict: 'E',
