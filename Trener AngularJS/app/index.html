@@ -31,15 +31,6 @@
         </br>
 
         <ng-view></ng-view>
-        <form>
-            <input id="eventDate" type="text" date-keys required ng-pattern="/\d\d/\d\d/\d\d\d\d/" ng-model="event.date" placeholder="format (mm/dd/yyyy)..." />
-
-
-            <input type="text"   ng-model="MainCtrl.message" >
-
-            <better-input laladata="{{MainCtrl.message}}"></better-input>
-        </form>
-
 
 
     </div>
@@ -64,8 +55,9 @@
 
 
 
-<script src="js/services/TreningAppData.js"></script>
+<script src="js/services/TreningAppGetDataService.js"></script>
 <script src="js/services/CssFormatServices.js"></script>
+<script src="js/services/DataCommonService.js"></script>
 <script src="lib/bootstrap.min.js"></script>
 
 </body>

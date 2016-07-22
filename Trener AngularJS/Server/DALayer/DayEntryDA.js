@@ -4,40 +4,59 @@
 var connectionProvider = require('../mysqlConnectionStringProvider.js');
 //var dateFormat = require('./../../app/js/DateFormatLibrary.js');
 var moment = require('moment');
+var TreningEntryDA = require('./TreningEntryDA.js');
 
 var DayEntryDA = {
 
-    createDayEntry: function (dayEntry, OnSuccessfulCallback) {
+    createDayEntryWithTreningData: function (dayEntry, OnSuccessfulCallback) {
 
         var insertStatement = "INSERT INTO DayEntry SET?";
         console.log('Inserting data: ');
         console.log(dayEntry);
 
         var dayEntryDB = {
-            WakeUp : dayEntry.WakeUp,
-            SleepAt: dayEntry.SleepAt,
-            DateD :  moment(dayEntry.DateD).format('YYYY-MM-DD')
+            WakeUp: dayEntry.NewDayEntry.WakeUp,
+            SleepAt: dayEntry.NewDayEntry.SleepAt,
+            DateD: moment(dayEntry.NewDayEntry.DateD).format('YYYY-MM-DD')
         };
 
 
         var connection = connectionProvider.mysqlConnectionStringProvider.getMySqlConnection();
 
         if (connection) {
+            console.log('Connection 1');
 
+            var DayEntryIDFromDB = 0;
             connection.query(insertStatement, dayEntryDB, function (err, result) {
-
+                console.log(insertStatement);
+                console.log('Wykonano query, result: ');
                 if (err) {
-                    console.log(err)
-                    OnSuccessfulCallback({ status : 'Error' });
+                    console.log(err);
+                    OnSuccessfulCallback({status: 'Error'});
                 }
 
-                OnSuccessfulCallback({ status : 'successful' });
-                console.log(result)
-            });
+                DayEntryIDFromDB = result.insertId;
+                console.log(DayEntryIDFromDB);
+                console.log(result);
 
+                //trening date
+                console.log(dayEntry.TreningEntryArray);
+                TreningEntryDA.TreningEntryDA.addTreningData(dayEntry.TreningEntryArray,DayEntryIDFromDB,OnSuccessfulCallback)
+            });
+            
             connectionProvider.mysqlConnectionStringProvider.closeMySqlConnection(connection);
+            console.log('Connection 1 - zamkniecie - a jednak nie zamknieto');
         }
+
+
+
+
+
+        OnSuccessfulCallback({status: 'Successful', resultID: DayEntryIDFromDB});
+
     },
+
+
 
     getDayEntries: function (OnSuccessfulCallback) {
 
@@ -48,7 +67,7 @@ var DayEntryDA = {
 
         if (connection) {
 
-            connection.query(selectStatement, function (err,rows,fields) {
+            connection.query(selectStatement, function (err, rows, fields) {
 
                 if (err) {
                     console.log(err)
@@ -61,7 +80,6 @@ var DayEntryDA = {
             connectionProvider.mysqlConnectionStringProvider.closeMySqlConnection(connection);
         }
     }
-
 
 
 };

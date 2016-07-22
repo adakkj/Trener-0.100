@@ -32,8 +32,7 @@ var mysqlConnectionStringProvider = {
             })
         }
 
-    }
-
+    } 
 
 }
 

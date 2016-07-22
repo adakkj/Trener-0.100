@@ -6,7 +6,7 @@
 (function () {
 
     var app = angular.module('treningApp');
-    app.controller("NewDayEntryController", function (dataService, CssService, $timeout) {
+    app.controller("NewDayEntryController", function (dataService, CssService, $timeout,DataCommonService) {
         this.message = "this message from NewDayEntryController";
 
 
@@ -18,15 +18,17 @@
         zm.SaveEffectCssClass = 'label label-success';
         zm.SaveNewDayEntry = function (NewDayEntryForm) {
             if (NewDayEntryForm.$valid) {
-                dataService.postWSData('NewDayEntry', zm.NewDayEntry).then(function (response) {
-                    alert(response.status);
-                    if (response.status == 200) {
+                dataService.postWSData('NewDayEntryWithTreningData', {NewDayEntry:zm.NewDayEntry,TreningEntryArray:zm.NewTreningEntiries.TreningEntryArray}).then(function (response) {
+                    if (response.data.status == 'Successful') {
                         zm.SaveEffectInfo = 'Dodano nowy wpis!';
                         zm.SaveEffectCssClass = 'label label-success';
 
                         $timeout(function () {
                             zm.SaveEffectInfo = '';
                         }, 3000);
+
+                        zm.NewTreningEntiries.TreningEntryArray={};
+                        zm.NewDayEntry = {DateD: new Date()};
                     }
                     else {
                         zm.SaveEffectInfo = 'Wystapil blad';
@@ -35,8 +37,6 @@
                             zm.SaveEffectInfo = '';
                         }, 3000);
                     }
-
-                    zm.NewDayEntry = {DateD: new Date()};
                 })
             }
             else {
@@ -58,7 +58,7 @@
             console.log(e)
         });
 
-        dataService.getWSData('SubCategory').then(function (response) {
+        dataService.getWSData('Subcategory').then(function (response) {
             zm.SubcategoryData = response.data;
 
 
@@ -80,23 +80,14 @@
             console.log(e)
         });
 
-        // Ladowanie danych
+        // Ladowanie danych end
 
 
-        zm.GetCategoryName = function (categoryID) {
-
-            var l = zm.CategoryData.filter(function (el) {
-                return el.id == categoryID;
-            });
-
-            return l[0].Name;
+        zm.GetCategoryName = function(CategoryID){
+           return DataCommonService.GetNameFromIdNameList(zm.CategoryData,CategoryID);
         };
         zm.GetSubCategoryName = function (SubcategoryID) {
-
-            var l = zm.SubCategoryData.filter(function (el) {
-                return el.id == SubcategoryID;
-            });
-            return l[0].Name;
+                return DataCommonService.GetNameFromIdNameList(zm.SubcategoryData,SubcategoryID);
         };
 
 
@@ -109,6 +100,7 @@
 
         // dyrektywa dodawnia TreningEntry
 
+        zm.AddNewElementInfo="";
 
         zm.NewTreningEntiries = {
             Test: 'xyz',
@@ -127,8 +119,20 @@
             },
 
             AddNewElement: function () {
-                this.TreningEntryArray.push(this.NewElement);
-                this.NewElement = {};
+                if(this.NewElement && this.NewElement.Cat && this.NewElement.Cat.id && this.NewElement.Subcat && this.NewElement.Subcat.id) {
+                    this.NewElement.Cat.Name = zm.GetCategoryName(this.NewElement.Cat.id);
+                    this.NewElement.Subcat.Name = zm.GetSubCategoryName(this.NewElement.Subcat.id);
+
+                    this.TreningEntryArray.push(this.NewElement);
+                    this.NewElement = {};
+                }
+                else
+                {
+                    zm.AddNewElementInfo="Musisz wybrać przynajmiej kategorie i podkategorie";
+                    $timeout(function () {
+                        zm.AddNewElementInfo = "";
+                    }, 3000);
+                }
             }
         };
 

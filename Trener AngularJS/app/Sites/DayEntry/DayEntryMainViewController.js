@@ -6,7 +6,7 @@
 (function () {
 
     var app = angular.module('treningApp');
-    app.controller("DayEntryMainViewController", function (dataService,CssService) {
+    app.controller("DayEntryMainViewController", function (dataService,CssService,DataCommonService) {
         this.message = "this message from DayEntryMainViewController";
 
 
@@ -49,25 +49,15 @@
             console.log(e)
         });
 
-        // Ladowanie danych
+        // Ladowanie danych end
 
 
-        zm.GetCategoryName= function(categoryID){
-
-            var l=zm.CategoryData.filter(function (el) {
-                return el.id==categoryID;
-            });
-
-            return l[0].Name;
+        zm.GetCategoryName = function(CategoryID){
+            return DataCommonService.GetNameFromIdNameList(zm.CategoryData,CategoryID);
         };
-        zm.GetSubCategoryName= function(SubcategoryID){
-
-            var l=zm.SubCategoryData.filter(function (el) {
-                return el.id==SubcategoryID;
-            });
-            return l[0].Name;
+        zm.GetSubCategoryName = function (SubcategoryID) {
+            return DataCommonService.GetNameFromIdNameList(zm.SubCategoryData,SubcategoryID);
         };
-
 
 
         //CSS

@@ -6,7 +6,7 @@
 (function () {
 
     var app = angular.module('treningApp');
-    app.controller("TreningEntryDetailsController", function (dataService, CssService, $routeParams) {
+    app.controller("TreningEntryDetailsController", function (dataService, CssService, $routeParams,DataCommonService) {
         var treningID = $routeParams.TreningEntryID;
         this.message = "this message from TreningEntryDetailsController: " + treningID;
 
@@ -15,7 +15,7 @@
 
         zm.TreningEntryData = {};
         zm.CategoryData = [];
-        zm.SubCategoryData = []
+        zm.SubcategoryData = [];
 
 
         // Ladowanie danych
@@ -26,7 +26,7 @@
         });
 
         dataService.getWSData('SubCategory').then(function (response) {
-            zm.SubCategoryData = response.data;
+            zm.SubcategoryData = response.data;
         }, function (e) {
             console.log(e)
         });
@@ -37,40 +37,16 @@
             console.log(e)
         });
 
-        // Ladowanie danych
+        // Ladowanie danych end
 
 
-        zm.GetCategoryName = function (categoryID) {
-            if (categoryID) {
-                var l = zm.CategoryData.filter(function (el) {
-                    return el.id == categoryID;
-                });
 
-                if (l.length==0)
-                {
-                    console.log('Zalogowano categoryID: '+categoryID);
-                }
-                else {
-                    return l[0].Name;
-                }
-            }
+        zm.GetCategoryName = function(CategoryID){
+            return DataCommonService.GetNameFromIdNameList(zm.CategoryData,CategoryID);
         };
         zm.GetSubCategoryName = function (SubcategoryID) {
-            if (SubcategoryID) {
-                var l = zm.SubCategoryData.filter(function (el) {
-                    return el.id == SubcategoryID;
-                });
-
-                if (l.length==0)
-                {
-                    console.log('Zalogowano SubcategoryID: '+SubcategoryID);
-                }
-                else {
-                    return l[0].Name;
-                }
-            }
+            return DataCommonService.GetNameFromIdNameList(zm.SubcategoryData,SubcategoryID);
         };
-
 
         //CSS
 

@@ -54,6 +54,53 @@ var TreningEntryDA = {
 
             connectionProvider.mysqlConnectionStringProvider.closeMySqlConnection(connection);
         }
+    },
+
+    addTreningData: function (treningDataArray,dayEntryID,OnSuccessfulCallback) {
+
+
+        console.log('----------Dodawanie TreningData-------------');
+        var connection2 = connectionProvider.mysqlConnectionStringProvider.getMySqlConnection();
+        if (connection2) {
+            console.log('Connection 2');
+            console.log('Parametry: ');
+            console.log(dayEntryID);
+            console.log(treningDataArray);
+
+
+            if (treningDataArray && treningDataArray.length > 0) {
+                console.log('Wchodz do if');
+                var i;
+                for(i in treningDataArray)
+                {
+                    console.log('Wchodz do petli');
+                    var treningEntryDB = {
+                        DayEntryID: dayEntryID,
+                        Description: treningDataArray[i].Description,
+                        CategoryID: treningDataArray[i].Cat.id,
+                        SubcategoryID: treningDataArray[i].Subcat.id,
+                        Duration: treningDataArray[i].Duration,
+                        Power: treningDataArray[i].Power
+
+                    };
+                    var sql = "INSERT INTO TreningEntry SET?";
+
+                    connection2.query(sql, treningEntryDB, function (err, result) {
+                        console.log(sql);
+                        console.log('Wykonano query, result: ');
+                        if (err) {
+                            console.log(err);
+                            OnSuccessfulCallback({status: 'Error'});
+                        }
+                        console.log(result)
+
+                    });
+                }
+            }
+            console.log('Connection 2 - zamkniecie');
+            connectionProvider.mysqlConnectionStringProvider.closeMySqlConnection(connection2);
+        }
+
     }
 
 };

@@ -11,18 +11,16 @@
                                      ng-pattern="/[0-2][0-9]:[0-5][0-9]/" placeholder="Format GG:MM"/><br/>
 
 
+            <p class="label-info">
+                Treningi tego dnia
+            </p>
+            <trening-entry-adding-table></trening-entry-adding-table>
 
-
-
-            <button class="ng-binding btn btn-info" type="submit"
-                    ng-click="NewDayEntryCtrl.SaveNewDayEntry(NewDayEntryForm)">Zapisz
+            <button class="ng-binding btn btn-success" type="submit"
+                    ng-click="NewDayEntryCtrl.SaveNewDayEntry(NewDayEntryForm)">Zapisz calosc
             </button>
         </fieldset>
     </form>
-
-    <trening-entry-adding-table   ></trening-entry-adding-table>
-
-    <button ng-click="NewDayEntryCtrl.AddNewElement2('aa')" type="button"> {{NewDayEntryCtrl.message}}</button>
 
 
 </div>

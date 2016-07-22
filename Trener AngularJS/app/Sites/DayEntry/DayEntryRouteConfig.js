@@ -46,16 +46,17 @@ DayEntryRouteConfig.prototype.addRoutes = function () {
 
     self.routeTable.push({
             requestType: 'post',
-            requestUrl: '/NewDayEntry',
+            requestUrl: '/NewDayEntryWithTreningData',
             callbackFunction: function (request, response) {
 
                 console.log('request');
                 console.log(request.body);
 
                 var dayEntryDA = require('./../../../Server/DALayer/DayEntryDA.js');
-                dayEntryDA.DayEntryDA.createDayEntry(request.body, function (status) {
-                    response.json(status);
+                dayEntryDA.DayEntryDA.createDayEntryWithTreningData(request.body, function (status) {
+                    console.log('status WS');
                     console.log(status);
+                    response.json(status);
                 });
             }
         }

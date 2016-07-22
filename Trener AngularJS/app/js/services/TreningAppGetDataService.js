@@ -12,7 +12,7 @@
         this.getWSData = function (WSparam) {
             return $http({
                 method: 'GET',
-                url: wsURL + WSparam,
+                url: wsURL + WSparam
             }).success(function (data) {
                 return data;
             }).error(function () {
@@ -33,8 +33,13 @@
                 return null;
             });
         };
+        
     });
 
+    
+    
+    
+    
 
     app.factory('TreningData', function (dataService) {
 
