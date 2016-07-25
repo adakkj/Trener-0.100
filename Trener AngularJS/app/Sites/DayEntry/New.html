@@ -1,7 +1,8 @@
 {{NewDayEntryCtrl.message}}
 <div class="well span12">
-    <!--<span class="label label-success" >{{NewDayEntryCtrl.SaveEffectInfo}}</span>-->
-    <span ng-class="NewDayEntryCtrl.SaveEffectCssClass">{{NewDayEntryCtrl.SaveEffectInfo}}</span>
+    <h2>
+        <span  ng-class="NewDayEntryCtrl.SaveEffectCssClass">{{NewDayEntryCtrl.SaveEffectInfo}}</span>
+    </h2>
     <form name="NewDayEntryForm">
         <fieldset>
             Dzien: <input type="date" required ng-model="NewDayEntryCtrl.NewDayEntry.DateD"/><br/>

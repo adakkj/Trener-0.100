@@ -15,13 +15,13 @@
         zm.NewDayEntry = {DateD: new Date()};
 
         zm.SaveEffectInfo = '';
-        zm.SaveEffectCssClass = 'label label-success';
+        zm.SaveEffectCssClass = 'label2 label-success';
         zm.SaveNewDayEntry = function (NewDayEntryForm) {
             if (NewDayEntryForm.$valid) {
                 dataService.postWSData('NewDayEntryWithTreningData', {NewDayEntry:zm.NewDayEntry,TreningEntryArray:zm.NewTreningEntiries.TreningEntryArray}).then(function (response) {
                     if (response.data.status == 'Successful') {
                         zm.SaveEffectInfo = 'Dodano nowy wpis!';
-                        zm.SaveEffectCssClass = 'label label-success';
+                        zm.SaveEffectCssClass = 'label2 label-success';
 
                         $timeout(function () {
                             zm.SaveEffectInfo = '';

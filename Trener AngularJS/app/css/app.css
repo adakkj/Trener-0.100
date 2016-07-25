@@ -36,3 +36,40 @@ select, textarea {
     background-color: #d9534f;
 }
 
+.label2
+{
+    display: inline-block;
+    padding: 2px 4px;
+    font-size: 32px;
+    font-weight: bold;
+    line-height: 34px;
+    color: #fff;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 3px;
+
+}
+
+
+.label2:empty
+{
+    display: none;
+}
+
+
+
+/*----------------------------------------------- testy CSS--------------------*/
+
+p[title='Hello']
+{
+    color: red;
+
+}
+
+
+p:first-letter
+{
+    font-size:2em;
+
+}
