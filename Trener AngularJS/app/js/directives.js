@@ -28,28 +28,34 @@
     );
 
 
-
     app.directive('treningEntryAddingTable', function () {
         return {
             restrict: 'E',
             replace: true,
-            templateUrl: '/Sites/TreningEntry/Directive/TreningEntryAddingTable.html',
+            templateUrl: '/Sites/TreningEntry/Directive/TreningEntryAddingTable.html'
         }
             ;
     });
 
-
-
-
-
-
+    app.directive('myTimePicker', function () {
+        return {
+            restrict: 'E',
+            replace: true,
+            templateUrl: '/Sites/TreningEntry/Directive/MyTimePicker.html',
+            controller: 'TimepickerCtrl',
+            scope: {
+                mytime: '='
+            }
+        }
+            ;
+    });
 
 
     app.directive("betterInput", function () {
             return {
                 restrict: 'E',
                 template: "<button class='btn btn-danger'> ",
-                replace:true,
+                replace: true,
                 link: function (scope, element, attrs, controller) {
                     attrs.$observe('laladata', function (newValue, oldValue) {
                         if (newValue !== oldValue) {

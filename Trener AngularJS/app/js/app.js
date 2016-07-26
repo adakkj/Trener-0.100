@@ -1,7 +1,7 @@
 'use strict';
 
 (function () {
-    var app = angular.module('treningApp', ['ngRoute','ui.bootstrap'])
+    var app = angular.module('treningApp', ['ngRoute','ui.bootstrap','ngAnimate'])
         .config(function ($routeProvider) {
             $routeProvider.when('/TreningTypes',
                 {

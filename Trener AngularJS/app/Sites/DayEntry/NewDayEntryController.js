@@ -6,7 +6,7 @@
 (function () {
 
     var app = angular.module('treningApp');
-    app.controller("NewDayEntryController", function (dataService, CssService, $timeout,DataCommonService) {
+    app.controller("NewDayEntryController", function ($scope,dataService, CssService, $timeout,DataCommonService,sharedProperties) {
         this.message = "this message from NewDayEntryController";
 
 
@@ -43,6 +43,18 @@
                 alert('Niepoprawne dane w formlarzu');
             }
         };
+
+        zm.mytime=new Date();
+
+        // watch the service for changes to currentUser
+        $scope.$watch(function(){
+            return sharedProperties.currentSelection;
+        }, function(currentSelection){
+            zm.NewTreningEntiries.NewElement.Power= currentSelection;
+        }, true);
+
+        
+        //zm.GetSelectedItem=sharedProperties.getProperty();
 
 
         zm.DayEntryMainViewData = {};
