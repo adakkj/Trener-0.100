@@ -1,0 +1,31 @@
+{{model.message}}
+<div class="well span12">
+    <h2>
+        <span  ng-class="model.SaveEffectCssClass">{{model.SaveEffectInfo}}</span>
+    </h2>
+    <form name="NewDayEntryForm">
+        <fieldset>
+            Dzien: <input type="date" required ng-model="model.NewDayEntry.DateD"/><br/>
+            Wstalem o: <input type="text" id="p1" required ng-model="model.NewDayEntry.WakeUp"
+                              ng-pattern="/[0-2][0-9]:[0-5][0-9]/" placeholder="Format GG:MM"/><br/>
+            Poszedlem spac o: <input type="text" id="p2" ng-model="model.NewDayEntry.SleepAt"
+                                     ng-pattern="/[0-2][0-9]:[0-5][0-9]/" placeholder="Format GG:MM"/><br/>
+
+
+            <p class="label-info">
+                Treningi tego dnia
+            </p>
+
+            <my-Time-Picker mytime="model.mytime"></my-Time-Picker>
+            {{model.mytime}}
+
+            <trening-Entry-Adding-New-Table></trening-Entry-Adding-New-Table>
+
+            <button class="ng-binding btn btn-success" type="submit"
+                    ng-click="model.SaveNewDayEntry(NewDayEntryForm)">Zapisz calosc
+            </button>
+        </fieldset>
+    </form>
+
+
+</div>

@@ -1,0 +1,104 @@
+<div>
+
+    <span class="label-danger">{{model.AddNewElementInfo}}</span>
+    <table class="table">
+        <thead>
+        <tr class="success">
+
+            <td>Kategoria</td>
+            <td>Podkategoria</td>
+            <td>Opis</td>
+            <td>Czas</td>
+            <td>Power</td>
+            <td></td>
+        <tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in model.NewTreningEntiries.TreningEntryArray">
+
+
+            <td>{{item.Cat.Name}}</td>
+            <td>{{item.Subcat.Name}}</td>
+            <td>{{item.Description}}</td>
+            <td>{{item.Duration}}</td>
+            <td>{{item.Power}}</td>
+            <td>
+
+            </td>
+        </tr>
+        </tbody>
+
+        <tr>
+
+            <td>
+                <select class="input-medium" name="repeatSelect" id="repeatSelect"
+                        ng-model="model.NewTreningEntiries.NewElement.Cat.id">
+                    <option ng-repeat="option in model.CategoryData" value="{{option.id}} ">{{option.Name}}
+                    </option>
+                </select>
+            </td>
+            <td>
+                <select class="input-medium" name="repeatSelect" id="repeatSelect2"
+                        ng-model="model.NewTreningEntiries.NewElement.Subcat.id">
+                    <option ng-repeat="option in model.SubcategoryData" value="{{option.id}}">
+                        {{option.Name}}
+                    </option>
+                </select>
+            </td>
+
+            <td><input class="input-xlarge" type="text"
+                       ng-model="model.NewTreningEntiries.NewElement.Description"></td>
+            <td><input class="input-mini" type="number"
+                       ng-model="model.NewTreningEntiries.NewElement.Duration"></td>
+            <td>
+                <div  style="float:left;">
+
+
+                    <div style="display:inline-block">
+                        <input class="input-mini" max="5" min="1" type="number"
+                               ng-model="model.NewTreningEntiries.NewElement.Power">
+                    </div>
+                    <!--........................ kontriolka begin........................-->
+                    <div ng-controller="ModalDemoCtrl2" style="display:inline-block">
+                        <script type="text/ng-template" id="myModalContent.html">
+                            <div class="modal-header">
+                                <h3 class="modal-title">I'm a modal!</h3>
+                            </div>
+                            <div class="modal-body">
+                                <ul>
+                                    <li ng-repeat="item in items">
+                                        <a href="#" ng-click="$event.preventDefault(); selected.item = item">{{ item
+                                            }}</a>
+                                    </li>
+                                </ul>
+                                Selected: <b>{{ selected.item }}</b>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+                                <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+                            </div>
+                        </script>
+
+                        <button type="button" class="btn btn-default" style="margin-top: -10px" ng-click="open()">P!</button>
+                        <!--<div ng-show="selected">Selection from a modal: {{ selected }}</div>-->
+                    </div>
+                    <!--........................ kontriolka end........................-->
+                </div>
+
+            </td>
+
+            <td>
+                <button type="button" class="btn btn-success"
+                        ng-click="model.NewTreningEntiries.AddNewElement()">
+                    Dodaj
+                </button>
+            </td>
+
+        </tr>
+
+    </table>
+
+</div>
+
+
+

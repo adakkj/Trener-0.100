@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Strona główna</title>
+    <!--<base href="/Projekt3m/"/>-->
+    <link rel="stylesheet" href="assets/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/main.css">
+
+
+</head>
+<body ng-app="TrenerDB2">
+
+
+<div class="container">
+
+    <div class="jumbotron">
+
+        <!--<div id="menu" style="margin-top: 50px">-->
+            <!--<my-Nav-Bar></my-Nav-Bar>-->
+        <!--</div>-->
+
+
+To jest strona Index.html
+        </br>
+        <a ui-sref="prosty">prosty</a>
+
+        <ui-view></ui-view>
+
+
+        <p title="Hello">
+            Kolejnym błędem, który popełniamy stanowczo zbyt często jest stawanie pod drzewami podczas ulewnego deszczu.
+            Jest to bezpieczne tylko, gdy nie ma w pobliżu burzy. Gdy niebo przecinają błyskawice, chronienie się pod
+            drzewem, to najgorszy pomysł, jaki może nam przyjść do głowy.
+
+            Piorun uderza bowiem zazwyczaj w najwyższe obiekty, a drzewo można do nich zaliczyć. Po obejrzeniu
+            poniższego filmiku, nigdy więcej nie "schronicie się" podczas burzy pod drzewem
+
+        </p>
+    </div>
+
+</div>
+
+<!--********** moduly***********-->
+<script src="lib/angular.js"></script>
+<script src="lib/angular-animate.js"></script>
+<!--<script src="lib/bootstrap.min.js"></script>-->
+<!--<script src="lib/angular-ui-router.js"></script>-->
+<script type="text/javascript" src="lib/angular-ui-router.min.js"></script>
+
+<!--********** moduly***********-->
+
+
+<!-- *apprelated* -->
+<script type="text/javascript" src="./src/root/main.js"></script>
+<script type="text/javascript" src="./src/root/config.js"></script>
+<script type="text/javascript" src="./src/root/run.js"></script>
+<script type="text/javascript" src="./src/root/consts.js"></script>
+<!-- *apprelated* -->
+
+
+<!--**********components***********-->
+<!--<script type="text/javascript" src="./src/components/Prosty/code.js"></script>-->
+<script type="text/javascript" src="controller.js"></script>
+<script type="text/javascript" src="src/components/Prosty2/code.js"></script>
+<script type="text/javascript" src="src/components/DayEntry/MainView/code.js"></script>
+<script type="text/javascript" src="src/components/DayEntry/New/code.js"></script>
+<script type="text/javascript" src="src/components/TreningEntry/AddingNewTable/code.js"></script>
+
+
+<!--**********components***********-->
+
+
+<!--**********Services***********-->
+<script type="text/javascript" src="src/services/DataCommonService.js"></script>
+<script type="text/javascript" src="src/services/TreningAppGetDataService.js"></script>
+<script type="text/javascript" src="src/services/CssFormatServices.js"></script>
+<script type="text/javascript" src="src/services/DirectiveConnector.js"></script>
+
+<!--**********Services***********-->
+
+
+
+
+
+
+
+<!--<script src="dist/ui-bootstrap-tpls.js"></script>-->
+
+
+
+
+
+</body>
+</html>

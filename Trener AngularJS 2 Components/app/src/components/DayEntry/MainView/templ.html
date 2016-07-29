@@ -1,0 +1,48 @@
+<a class="ng-binding btn btn-info"  ui-sref="dayEntryNew"  >Nowy DayEntry<span class="sr-only">(current)</span></a>
+
+<div>
+    {{model.message}}
+
+    <ul class="thumbnails">
+        <li ng-repeat="day in model.DayEntryMainViewData">
+
+            <div class="row session">
+
+
+                <div class="well span9">
+                    <h3 class="well-title">
+                        <div>{{day.DateD | date:'yyyy-MM-dd'}}
+                            <span class="label label-success" style="vertical-align: middle">{{day.WakeUp}}</span> -
+                            <span class="label label-success" style="vertical-align: middle">{{day.SleepAt}}</span>
+                        </div>
+
+                    </h3>
+
+                    <div ng-repeat="trening in model.TreningEntryMainViewData | filter: day.id as D_ID">
+                        <div class="btn-group" role="group" aria-label="...">
+                            <a ng-href="#TreningEntryDetail/{{trening.T_ID}}">
+                            <span  ng-class="model.GetClassforTreningForButton(model.GetCategoryName(trening.CategoryID))">
+                                {{model.GetCategoryName(trening.CategoryID)}} - {{model.GetSubCategoryName(trening.SubcategoryID)}} - {{trening.T_ID }}
+                            </span>
+                            </a>
+                        </div>
+                        </br>
+
+                        <span>Duration: {{trening.Duration }}</span><br/>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-info" role="progressbar"
+                                 aria-valuenow="(trening.Power/5)*100" aria-valuemin="0" aria-valuemax="100"
+                                 style="text-align: center;width: {{(trening.Power/5)*100}}%;background-color: green">
+                                <span class="sr-only">Power: {{trening.Power}}/5</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </li>
+    </ul>
+
+</div>
+
+
