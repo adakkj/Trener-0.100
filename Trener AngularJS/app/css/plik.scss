@@ -1,0 +1,17 @@
+$color: red;
+
+html, body {
+  font-family: 'Roboto', sans-serif;
+  font-size:14px;
+  height:100%;
+  margin: 0;
+  padding: 0;
+}
+.loginWindow {
+  max-width:  90%;
+  width: 500px;
+  margin: auto;
+}
+.stretch input  {
+  width: 100%
+}

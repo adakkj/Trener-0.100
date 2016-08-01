@@ -4,7 +4,7 @@
 
 
 (function () {
-    var globalSetup = {MyPort:3000}; //require('./../../../GlobalSetup.js');
+    var globalSetup = {MyPort:3300}; //require('./../../../GlobalSetup.js');
     var app = angular.module('treningApp');
     var wsURL = 'http://localhost:' + globalSetup.MyPort + '/';
 

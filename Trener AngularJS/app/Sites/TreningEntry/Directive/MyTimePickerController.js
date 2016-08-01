@@ -1,11 +1,11 @@
 /**
  * Created by akraszewski on 2016-07-26.
  */
-angular.module('treningApp').controller('TimepickerCtrl', function ($scope, $log) {
+angular.module('treningApp').controller('TimepickerCtrl', function ($scope, $log) { // nazwa kontrolera musi być taka jak tu!!!
     $scope.mytime = new Date();
 
     $scope.hstep = 1;
-    $scope.mstep = 15;
+    $scope.mstep = 20;
 
     $scope.options = {
         hstep: [1, 2, 3],
