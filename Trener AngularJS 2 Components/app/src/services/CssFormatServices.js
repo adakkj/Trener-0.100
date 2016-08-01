@@ -9,6 +9,7 @@
     app.service('CssService', function() {
 
         this.GetClassforTreningForButton = function (treningType) {
+
             if(treningType) {
                 switch (treningType.toLowerCase()) {
                     case 'wspinaczka':

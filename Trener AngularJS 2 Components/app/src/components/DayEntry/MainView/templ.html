@@ -20,8 +20,8 @@
 
                     <div ng-repeat="trening in model.TreningEntryMainViewData | filter: day.id as D_ID">
                         <div class="btn-group" role="group" aria-label="...">
-                            <a ng-href="#TreningEntryDetail/{{trening.T_ID}}">
-                            <span  ng-class="model.GetClassforTreningForButton(model.GetCategoryName(trening.CategoryID))">
+                            <a ui-sref="treningEntryDetails({id:trening.T_ID})">
+                            <span  ng-class="model.GetClassforTreningForButton(model.GetCategoryName(trening.CategoryID)) ">
                                 {{model.GetCategoryName(trening.CategoryID)}} - {{model.GetSubCategoryName(trening.SubcategoryID)}} - {{trening.T_ID }}
                             </span>
                             </a>

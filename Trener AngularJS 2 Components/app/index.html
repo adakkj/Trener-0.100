@@ -16,14 +16,9 @@
 
     <div class="jumbotron">
 
-        <!--<div id="menu" style="margin-top: 50px">-->
-            <!--<my-Nav-Bar></my-Nav-Bar>-->
-        <!--</div>-->
-
-
-To jest strona Index.html
-        </br>
-        <a ui-sref="prosty">prosty</a>
+        <div id="menu" style="margin-top: 50px">
+            <my-Nav-Bar></my-Nav-Bar>
+        </div>
 
         <ui-view></ui-view>
 
@@ -45,8 +40,9 @@ To jest strona Index.html
 <script src="lib/angular.js"></script>
 <script src="lib/angular-animate.js"></script>
 <!--<script src="lib/bootstrap.min.js"></script>-->
-<!--<script src="lib/angular-ui-router.js"></script>-->
 <script type="text/javascript" src="lib/angular-ui-router.min.js"></script>
+<script src="lib/ui-bootstrap-tpls.js"></script>
+
 
 <!--********** moduly***********-->
 
@@ -62,10 +58,12 @@ To jest strona Index.html
 <!--**********components***********-->
 <!--<script type="text/javascript" src="./src/components/Prosty/code.js"></script>-->
 <script type="text/javascript" src="controller.js"></script>
-<script type="text/javascript" src="src/components/Prosty2/code.js"></script>
 <script type="text/javascript" src="src/components/DayEntry/MainView/code.js"></script>
 <script type="text/javascript" src="src/components/DayEntry/New/code.js"></script>
 <script type="text/javascript" src="src/components/TreningEntry/AddingNewTable/code.js"></script>
+<script type="text/javascript" src="src/components/Other/PowerPickup/Code.js"></script>
+<script type="text/javascript" src="src/components/TreningTypes/code.js"></script>
+<script type="text/javascript" src="src/components/TreningEntry/Details/code.js"></script>
 
 
 <!--**********components***********-->
@@ -76,6 +74,9 @@ To jest strona Index.html
 <script type="text/javascript" src="src/services/TreningAppGetDataService.js"></script>
 <script type="text/javascript" src="src/services/CssFormatServices.js"></script>
 <script type="text/javascript" src="src/services/DirectiveConnector.js"></script>
+
+
+<script type="text/javascript" src="src/Directives/Directives.js"></script>
 
 <!--**********Services***********-->
 

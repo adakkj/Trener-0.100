@@ -8,7 +8,7 @@
     angular.module('TrenerDB2').component('dayEntryNew', {
         templateUrl: './src/components/DayEntry/New/templ.html',
         controllerAs: 'model',
-        controller: ['$scope', 'dataService', 'CssService', 'DataCommonService', 'sharedProperties', controller]
+        controller: ['$scope', 'dataService', 'CssService','$timeout', 'DataCommonService', 'sharedProperties', controller]
     });
 
 
@@ -19,6 +19,7 @@
         var zm = this;
 
         zm.NewDayEntry = {DateD: new Date()};
+        zm.xyz='abcdefgh';
 
         zm.SaveEffectInfo = '';
         zm.SaveEffectCssClass = 'label2 label-success';
@@ -26,7 +27,7 @@
             if (NewDayEntryForm.$valid) {
                 dataService.postWSData('NewDayEntryWithTreningData', {
                     NewDayEntry: zm.NewDayEntry,
-                    TreningEntryArray: zm.NewTreningEntiries.TreningEntryArray
+                    treningEntryArray: zm.treningEntryArray
                 }).then(function (response) {
                     if (response.data.status == 'Successful') {
                         zm.SaveEffectInfo = 'Dodano nowy wpis!';
@@ -36,7 +37,7 @@
                             zm.SaveEffectInfo = '';
                         }, 3000);
 
-                        zm.NewTreningEntiries.TreningEntryArray = {};
+                        zm.treningEntryArray = {};
                         zm.NewDayEntry = {DateD: new Date()};
                     }
                     else {
@@ -55,12 +56,12 @@
 
         zm.mytime = new Date();
 
-        // watch the service for changes to currentUser
-        $scope.$watch(function () {
-            return sharedProperties.currentSelection;
-        }, function (currentSelection) {
-            zm.NewTreningEntiries.NewElement.Power = currentSelection;
-        }, true);
+        // watch the service for changes to currentSelection
+        // $scope.$watch(function () {
+        //     return sharedProperties.currentSelection;
+        // }, function (currentSelection) {
+        //     zm.NewElement.Power = currentSelection;
+        // }, true);
 
 
         //zm.GetSelectedItem=sharedProperties.getProperty();
@@ -118,45 +119,46 @@
         zm.GetClassforTreningForButton = CssService.GetClassforTreningForButton;
         zm.GetClassforTreningForLabel = CssService.GetClassforTreningForLabel;
 
+        zm.treningEntryArray = [];
 
         // dyrektywa dodawnia TreningEntry
 
-        zm.AddNewElementInfo = "";
+        // zm.AddNewElementInfo = "";
 
-        zm.NewTreningEntiries = {
-            Test: 'xyz',
-            TreningEntryArray: [],
-            NewElement: {
-                DayEntryID: '',
-                Description: '',
-                Duration: '',
-                Power: '',
-                Cat: {
-                    id: '',
-                    Name: ''
-                },
-                Subcat: {
-                    id: '',
-                    Name: ''
-                }
-            },
-
-            AddNewElement: function () {
-                if (this.NewElement && this.NewElement.Cat && this.NewElement.Cat.id && this.NewElement.Subcat && this.NewElement.Subcat.id) {
-                    this.NewElement.Cat.Name = zm.GetCategoryName(this.NewElement.Cat.id);
-                    this.NewElement.Subcat.Name = zm.GetSubCategoryName(this.NewElement.Subcat.id);
-
-                    this.TreningEntryArray.push(this.NewElement);
-                    this.NewElement = {};
-                }
-                else {
-                    zm.AddNewElementInfo = "Musisz wybrać przynajmiej kategorie i podkategorie";
-                    $timeout(function () {
-                        zm.AddNewElementInfo = "";
-                    }, 3000);
-                }
-            }
-        };
+        // zm.NewTreningEntiries = {
+        //     Test: 'xyz',
+        //     TreningEntryArray: [],
+        //     NewElement: {
+        //         DayEntryID: '',
+        //         Description: '',
+        //         Duration: '',
+        //         Power: '',
+        //         Cat: {
+        //             id: '',
+        //             Name: ''
+        //         },
+        //         Subcat: {
+        //             id: '',
+        //             Name: ''
+        //         }
+        //     },
+        //
+        //     AddNewElement: function () {
+        //         if (this.NewElement && this.NewElement.Cat && this.NewElement.Cat.id && this.NewElement.Subcat && this.NewElement.Subcat.id) {
+        //             this.NewElement.Cat.Name = zm.GetCategoryName(this.NewElement.Cat.id);
+        //             this.NewElement.Subcat.Name = zm.GetSubCategoryName(this.NewElement.Subcat.id);
+        //
+        //             this.TreningEntryArray.push(this.NewElement);
+        //             this.NewElement = {};
+        //         }
+        //         else {
+        //             zm.AddNewElementInfo = "Musisz wybrać przynajmiej kategorie i podkategorie";
+        //             $timeout(function () {
+        //                 zm.AddNewElementInfo = "";
+        //             }, 3000);
+        //         }
+        //     }
+        // };
 
 
     }

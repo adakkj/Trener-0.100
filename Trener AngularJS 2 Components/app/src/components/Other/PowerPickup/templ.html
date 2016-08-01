@@ -1,0 +1,25 @@
+<div   style="display:inline-block">
+
+    <script type="text/ng-template" id="myModalContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title">I'm a modal!</h3>
+        </div>
+        <div class="modal-body">
+            <ul>
+                <li ng-repeat="item in model.items">
+                    <a href="#" ng-click="$event.preventDefault(); model.selected.item = item">{{ item
+                        }}</a>
+                </li>
+            </ul>
+            Selected: <b>{{ model.selected.item }}</b>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="model.ok()">OK</button>
+            <button class="btn btn-warning" type="button" ng-click="model.cancel()">Cancel</button>
+        </div>
+    </script>
+
+    <button type="button" class="btn btn-default" style="margin-top: -10px" ng-click="model.open()">P!
+    </button>
+    <!--<div ng-show="selected">Selection from a modal: {{ selected }}</div>-->
+</div>

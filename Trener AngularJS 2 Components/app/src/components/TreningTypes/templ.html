@@ -1,0 +1,11 @@
+<div>
+    {{model.message}}
+
+    <p ng-repeat="item in model.CategoryData track by $index" style="padding: 20px">
+        <button type="button" ng-class="model.GetClassforTreningForButton(item.Name)" >{{item.Name}}</button>
+        <br> <br>
+        <span ng-repeat="item2 in model.SubcategoryData | filter: { CategoryID: item.id }"
+              ng-class="model.GetClassforTreningForLabel(item.Name)" style="margin-left: 5px">{{item2.Name}}</span>
+    </p>
+
+</div>

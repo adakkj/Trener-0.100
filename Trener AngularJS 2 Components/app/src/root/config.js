@@ -8,13 +8,7 @@
     function cfgFn($stateProvider, $urlRouterProvider) {
 
 
-        $stateProvider.state('prosty', {
-            url: '/prosty',
-            templateUrl: '../../src/components/Prosty/templ.html'
-        }).state('prosty2', {
-            url: '/prosty2',
-            template: '<prosty2></prosty2>'
-        }).state('dayEntryMainView', {
+        $stateProvider.state('dayEntryMainView', {
             url: '/dayEntryMainView',
             template: '<day-Entry-Main-View></day-Entry-Main-View>'
         }).state('dayEntryNew', {
@@ -23,7 +17,14 @@
         }).state('treningEntryAddingNewTable', {
             url: '/treningEntryAddingNewTable',
             template: '<trening-Entry-Adding-New-Table></trening-Entry-Adding-New-Table>'
+        }).state('TreningTypes', {
+            url: '/TreningTypes',
+            template: '<trening-types></trening-types>'
+        }).state('treningEntryDetails', {
+            url: '/treningEntryDetails/:id',
+            template: '<trening-Entry-Details></trening-Entry-Details>'
         });
+
         //     .state('signup', {
         //     url: '/signup',
         //     template: '<signup-view layout="column" layout-fill="layout-fill" flex="100"></signup-view>'
@@ -32,6 +33,6 @@
         //     template:'<main-view layout="column" layout-fill="layout-fill" flex="100"></main-view>'
         // });
 
-        $urlRouterProvider.otherwise('/prosty');
+        $urlRouterProvider.otherwise('/dayEntryMainView');
     }
 }();// jshint ignore:line

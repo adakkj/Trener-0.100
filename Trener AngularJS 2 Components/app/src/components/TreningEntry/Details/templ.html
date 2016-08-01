@@ -1,0 +1,21 @@
+<div class="well span9">
+
+   <span ng-class="model.GetClassforTreningForLabel(model.GetCategoryName(model.TreningEntryData.CategoryID))">
+       {{model.GetCategoryName(model.TreningEntryData.CategoryID)}} - {{model.GetSubCategoryName(model.TreningEntryData.SubcategoryID)}}
+   </span>
+    <br/>
+    {{model.TreningEntryData.Description}}
+    <br/>
+    <span>Duration: {{model.TreningEntryData.Duration }}</span><br/>
+    <div class="progress">
+        <div class="progress-bar progress-bar-info" role="progressbar"
+             aria-valuenow="(model.TreningEntryData.Power/5)*100" aria-valuemin="0" aria-valuemax="100"
+             style="text-align: center;width: {{(TreningEntryDetailsCtrl.TreningEntryData.Power/5)*100}}%;background-color: green">
+            <span class="sr-only">Power: {{model.TreningEntryData.Power}}/5</span>
+        </div>
+    </div>
+
+    <voting-thing uptreningpower="model.upTreningPower(model.TreningEntryData)" downtreningpower="model.downTreningPower(model.TreningEntryData)" count="model.TreningEntryData.Power" ></voting-thing>
+
+</div>
+<br/>

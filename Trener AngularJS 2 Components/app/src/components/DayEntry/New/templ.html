@@ -1,4 +1,5 @@
 {{model.message}}
+
 <div class="well span12">
     <h2>
         <span  ng-class="model.SaveEffectCssClass">{{model.SaveEffectInfo}}</span>
@@ -19,7 +20,7 @@
             <my-Time-Picker mytime="model.mytime"></my-Time-Picker>
             {{model.mytime}}
 
-            <trening-Entry-Adding-New-Table></trening-Entry-Adding-New-Table>
+            <trening-Entry-Adding-New-Table trening-Entry-Array="model.treningEntryArray"  ></trening-Entry-Adding-New-Table>
 
             <button class="ng-binding btn btn-success" type="submit"
                     ng-click="model.SaveNewDayEntry(NewDayEntryForm)">Zapisz calosc

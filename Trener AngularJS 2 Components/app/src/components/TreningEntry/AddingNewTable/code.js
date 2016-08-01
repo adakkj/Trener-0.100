@@ -7,12 +7,16 @@
 
     angular.module('TrenerDB2').component('treningEntryAddingNewTable', {
         templateUrl: './src/components/TreningEntry/AddingNewTable/templ.html',
-        controllerAs:'model',
-        controller: ['DataCommonService','dataService',controller]
+        controllerAs: 'model',
+        controller: ['DataCommonService', 'dataService', '$timeout', controller],
+        bindings: {
+            treningEntryArray: '='
+        }
+
     });
 
 
-    function controller(DataCommonService,dataService) {
+    function controller(DataCommonService, dataService, $timeout) {
         this.message = "this message from treningEntryAddingNewTable";
 
         var zm = this;
@@ -20,6 +24,7 @@
 
         zm.CategoryData = {};
         zm.SubcategoryData = {};
+        zm.PowerValues = [1, 2, 3, 4, 5];
 
         // Ladowanie danych
         dataService.getWSData('Category').then(function (response) {
@@ -38,51 +43,49 @@
         // Ladowanie danych end
 
 
-        zm.GetCategoryName = function(CategoryID){
-            return DataCommonService.GetNameFromIdNameList(zm.CategoryData,CategoryID);
+        zm.GetCategoryName = function (CategoryID) {
+            return DataCommonService.GetNameFromIdNameList(zm.CategoryData, CategoryID);
         };
         zm.GetSubCategoryName = function (SubcategoryID) {
-            return DataCommonService.GetNameFromIdNameList(zm.SubcategoryData,SubcategoryID);
+            return DataCommonService.GetNameFromIdNameList(zm.SubcategoryData, SubcategoryID);
         };
 
 
+        zm.AddNewElement = function () {
+            if (zm.NewElement && zm.NewElement.Cat && zm.NewElement.Cat.id && zm.NewElement.Subcat && zm.NewElement.Subcat.id) {
+                zm.NewElement.Cat.Name = zm.GetCategoryName(zm.NewElement.Cat.id);
+                zm.NewElement.Subcat.Name = zm.GetSubCategoryName(zm.NewElement.Subcat.id);
 
-
-        zm.AddNewElementInfo="";
-
-        zm.NewTreningEntiries = {
-            Test: 'xyz',
-            TreningEntryArray: [],
-            NewElement: {
-                DayEntryID: '',
-                Description: '',
-                Duration: '',
-                Power: '',
-                Cat:{
-                    id:'',
-                    Name:''
-                },
-                Subcat:{id:'',
-                    Name:''}
-            },
-
-            AddNewElement: function () {
-                if(zm.NewElement && zm.NewElement.Cat && zm.NewElement.Cat.id && zm.NewElement.Subcat && zm.NewElement.Subcat.id) {
-                    zm.NewElement.Cat.Name = zm.GetCategoryName(zm.NewElement.Cat.id);
-                    zm.NewElement.Subcat.Name = zm.GetSubCategoryName(zm.NewElement.Subcat.id);
-
-                    zm.TreningEntryArray.push(zm.NewElement);
-                    zm.NewElement = {};
-                }
-                else
-                {
-                    zm.AddNewElementInfo="Musisz wybrać przynajmiej kategorie i podkategorie";
-                    $timeout(function () {
-                        zm.AddNewElementInfo = "";
-                    }, 3000);
-                }
+                zm.treningEntryArray.push(zm.NewElement);
+                zm.NewElement = {};
+            }
+            else {
+                zm.AddNewElementInfo = "Musisz wybrać przynajmiej kategorie i podkategorie";
+                $timeout(function () {
+                    zm.AddNewElementInfo = "";
+                }, 3000);
             }
         };
+
+
+        zm.AddNewElementInfo = "";
+
+        zm.treningEntryArray = [];
+
+        zm.NewElement = {
+            DayEntryID: '',
+            Description: '',
+            Duration: '',
+            Power: '',
+            Cat: {
+                id: '',
+                Name: ''
+            },
+            Subcat: {
+                id: '',
+                Name: ''
+            }
+        }
 
     }
 

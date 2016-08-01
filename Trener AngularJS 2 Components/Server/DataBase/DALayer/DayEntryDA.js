@@ -40,8 +40,8 @@ var DayEntryDA = {
                 console.log(result);
 
                 //trening date
-                console.log(dayEntry.TreningEntryArray);
-                TreningEntryDA.TreningEntryDA.addTreningData(dayEntry.TreningEntryArray,DayEntryIDFromDB,OnSuccessfulCallback)
+                console.log(dayEntry.treningEntryArray);
+                TreningEntryDA.TreningEntryDA.addTreningData(dayEntry.treningEntryArray,DayEntryIDFromDB,OnSuccessfulCallback)
             });
             
             connectionProvider.mysqlConnectionStringProvider.closeMySqlConnection(connection);

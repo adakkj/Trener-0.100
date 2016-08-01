@@ -14,7 +14,7 @@
         <tr>
         </thead>
         <tbody>
-        <tr ng-repeat="item in model.NewTreningEntiries.TreningEntryArray">
+        <tr ng-repeat="item in model.treningEntryArray">
 
 
             <td>{{item.Cat.Name}}</td>
@@ -32,14 +32,14 @@
 
             <td>
                 <select class="input-medium" name="repeatSelect" id="repeatSelect"
-                        ng-model="model.NewTreningEntiries.NewElement.Cat.id">
+                        ng-model="model.NewElement.Cat.id">
                     <option ng-repeat="option in model.CategoryData" value="{{option.id}} ">{{option.Name}}
                     </option>
                 </select>
             </td>
             <td>
                 <select class="input-medium" name="repeatSelect" id="repeatSelect2"
-                        ng-model="model.NewTreningEntiries.NewElement.Subcat.id">
+                        ng-model="model.NewElement.Subcat.id">
                     <option ng-repeat="option in model.SubcategoryData" value="{{option.id}}">
                         {{option.Name}}
                     </option>
@@ -47,49 +47,25 @@
             </td>
 
             <td><input class="input-xlarge" type="text"
-                       ng-model="model.NewTreningEntiries.NewElement.Description"></td>
+                       ng-model="model.NewElement.Description"></td>
             <td><input class="input-mini" type="number"
-                       ng-model="model.NewTreningEntiries.NewElement.Duration"></td>
+                       ng-model="model.NewElement.Duration"></td>
             <td>
                 <div  style="float:left;">
 
 
                     <div style="display:inline-block">
                         <input class="input-mini" max="5" min="1" type="number"
-                               ng-model="model.NewTreningEntiries.NewElement.Power">
+                               ng-model="model.NewElement.Power">
+                        <power-Pickup items="model.PowerValues" selected-Value="model.NewElement.Power"></power-Pickup>
                     </div>
-                    <!--........................ kontriolka begin........................-->
-                    <div ng-controller="ModalDemoCtrl2" style="display:inline-block">
-                        <script type="text/ng-template" id="myModalContent.html">
-                            <div class="modal-header">
-                                <h3 class="modal-title">I'm a modal!</h3>
-                            </div>
-                            <div class="modal-body">
-                                <ul>
-                                    <li ng-repeat="item in items">
-                                        <a href="#" ng-click="$event.preventDefault(); selected.item = item">{{ item
-                                            }}</a>
-                                    </li>
-                                </ul>
-                                Selected: <b>{{ selected.item }}</b>
-                            </div>
-                            <div class="modal-footer">
-                                <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
-                                <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
-                            </div>
-                        </script>
-
-                        <button type="button" class="btn btn-default" style="margin-top: -10px" ng-click="open()">P!</button>
-                        <!--<div ng-show="selected">Selection from a modal: {{ selected }}</div>-->
-                    </div>
-                    <!--........................ kontriolka end........................-->
                 </div>
 
             </td>
 
             <td>
                 <button type="button" class="btn btn-success"
-                        ng-click="model.NewTreningEntiries.AddNewElement()">
+                        ng-click="model.AddNewElement()">
                     Dodaj
                 </button>
             </td>
